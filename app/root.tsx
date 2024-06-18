@@ -6,7 +6,9 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import "./tailwind.css";
-import {CssBaseline} from "@mui/material";
+import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+import pkg from '@mui/material/locale/index.js';
+const { esES } = pkg;
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,10 +26,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links/>
     </head>
     <body>
-    <CssBaseline/>
-    {children}
-    <ScrollRestoration/>
-    <Scripts/>
+        <ThemeProvider theme={createTheme(esES)}>
+            <CssBaseline/>
+            {children}
+            <ScrollRestoration/>
+            <Scripts/>
+        </ThemeProvider>
     </body>
     </html>
   );
